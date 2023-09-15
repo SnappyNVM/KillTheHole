@@ -1,19 +1,19 @@
 using UnityEngine;
 using System;
 
-public class CellPositionsContainer
+public class CellPositionsGenerator
 {
     private readonly int _countOfCellsBySide;
     private readonly Transform _gridSquare;
 
-    private float _cellSideSize;
+    private  float _cellSideSize;
     private float _gameFieldSideLength;
     private Vector3[,] _cellCenters;
     private Vector3 _cellSpawnOffset;
 
     public Vector3[,] CellCenters => _cellCenters;
 
-    public CellPositionsContainer(int countOfCellsBySide, Transform gridSquare)
+    public CellPositionsGenerator(int countOfCellsBySide, Transform gridSquare)
     {
         _countOfCellsBySide = countOfCellsBySide;
         _gridSquare = gridSquare;
@@ -40,9 +40,13 @@ public class CellPositionsContainer
         _cellCenters = new Vector3[_countOfCellsBySide, _countOfCellsBySide];
         for (int x = 0; x < _countOfCellsBySide; x++)
             for (int z = 0; z < _countOfCellsBySide; z++)
+            {
                 _cellCenters[x, z] = new Vector3
-                    ((x + 1) * _cellSideSize, 
-                    _gridSquare.position.y, 
+                    ((x + 1) * _cellSideSize,
+                    _gridSquare.position.y,
                     (z + 1) * _cellSideSize) - _cellSpawnOffset;
+                Debug.Log(_cellCenters[x, z]);
+            }
+        Debug.Log("Grid correctly initialized");
     }
 }

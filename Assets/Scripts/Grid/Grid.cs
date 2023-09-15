@@ -2,13 +2,16 @@ using UnityEngine;
 
 public class Grid
 {
-    [SerializeField] private Transform _gridSquare;
-    [SerializeField] private int _countOfCellsBySide;
+    private readonly Transform _gridSquare;
+    private readonly int _countOfCellsBySide;
+    private readonly CellPositionsGenerator _cellPositionsContainer;
+    private readonly FieldHolesFiller _fieldHolesFiller;
 
-    private CellPositionsContainer _cellPositionsContainer;
-
-    private void Awake()
+    public Grid(Transform gridSquare, int countOfCellsBySide)
     {
-        _cellPositionsContainer = new CellPositionsContainer(_countOfCellsBySide, _gridSquare);
+        _gridSquare = gridSquare;
+        _countOfCellsBySide = countOfCellsBySide;
+        _cellPositionsContainer = new CellPositionsGenerator(_countOfCellsBySide, _gridSquare);
+        _fieldHolesFiller = new FieldHolesFiller(this);
     }
 }
