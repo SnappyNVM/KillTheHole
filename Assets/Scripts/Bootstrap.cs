@@ -4,6 +4,7 @@ public class Bootstrap : MonoBehaviour
 {
     [SerializeField] private int _countOfCellsBySide;
     [SerializeField] private Transform _gridSquare;
+    [SerializeField] private HoleSpawner _holeSpawner;
 
     private Grid _grid;
 
@@ -12,5 +13,5 @@ public class Bootstrap : MonoBehaviour
         InitGrid();    
     }
 
-    private void InitGrid() => _grid = new Grid(_gridSquare, _countOfCellsBySide);
+    private void InitGrid() => _grid = new Grid(_gridSquare, _countOfCellsBySide, _holeSpawner);
 }

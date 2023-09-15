@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-public class GameplaySceneInstaller : MonoInstaller
+public class GameplaySceneInstaller : MonoBehaviour
 {
     //[SerializeField] private int _countOfCellsBySide;
     //[SerializeField] private Transform _gridSquare;

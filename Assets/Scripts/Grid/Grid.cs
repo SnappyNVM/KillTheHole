@@ -7,11 +7,13 @@ public class Grid
     private readonly CellPositionsGenerator _cellPositionsContainer;
     private readonly FieldHolesFiller _fieldHolesFiller;
 
-    public Grid(Transform gridSquare, int countOfCellsBySide)
+    public CellPositionsGenerator CellPositionsContainer => _cellPositionsContainer;
+
+    public Grid(Transform gridSquare, int countOfCellsBySide, HoleSpawner holeSpawner)
     {
         _gridSquare = gridSquare;
         _countOfCellsBySide = countOfCellsBySide;
         _cellPositionsContainer = new CellPositionsGenerator(_countOfCellsBySide, _gridSquare);
-        _fieldHolesFiller = new FieldHolesFiller(this);
+        _fieldHolesFiller = new FieldHolesFiller(this, holeSpawner);
     }
 }
