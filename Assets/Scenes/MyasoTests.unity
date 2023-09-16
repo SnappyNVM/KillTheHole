@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -438,8 +438,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1542928555}
   - component: {fileID: 1542928554}
+  - component: {fileID: 1542928557}
+  - component: {fileID: 1542928556}
   m_Layer: 0
-  m_Name: MoleSpawner
+  m_Name: ScriptHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -457,9 +459,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4f23b55c40f334fa9b01e85b9c1d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _molePrefab: {fileID: 2428529352704821798, guid: 2fc681a35814b3b438fd2e05a4bb9c91, type: 3}
-  _spawnCooldown: 1
-  _spawner: {fileID: 1993937647}
+  _easyMole: {fileID: 2428529352704821798, guid: 2fc681a35814b3b438fd2e05a4bb9c91, type: 3}
+  _middleMole: {fileID: 2428529352704821798, guid: 3411590a04785444e94d356445c8dde4, type: 3}
+  _hardMole: {fileID: 2428529352704821798, guid: 52814c3122c06c24ebe3d09fc85d5a4a, type: 3}
+  _spawnCooldown: 0.1
+  _spawner: {fileID: 1542928557}
 --- !u!4 &1542928555
 Transform:
   m_ObjectHideFlags: 0
@@ -473,8 +477,35 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1542928556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542928553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 847e905ffba57f542aeb16ee0e28b67d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _heightModifer: 1
+  _yPositionModifer: 1
+--- !u!114 &1542928557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542928553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b9149c4fa8d19045baf13a85bad9f02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _holePrefab: {fileID: 2974168883872066690, guid: f2fce90cfd15d5349b5202c4e16b70c3, type: 3}
 --- !u!1 &1610129861
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,10 +536,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a15484567b31144b43bfb0d16abdbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _countOfCellsBySide: 4
+  _countOfCellsBySide: 10
   _gridSquare: {fileID: 1303599393}
-  _holeSpawner: {fileID: 1993937647}
+  _holeSpawner: {fileID: 1542928557}
   _moleSpawner: {fileID: 1542928554}
+  _objectTransfromer: {fileID: 1542928556}
 --- !u!114 &1610129863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,93 +587,4 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1963276130
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1963276132}
-  - component: {fileID: 1963276133}
-  m_Layer: 0
-  m_Name: Bootstrap
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1963276132
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1963276130}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1963276133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1963276130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b76e22e7f70fb84e8e566df58c83830, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1993937646
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1993937648}
-  - component: {fileID: 1993937647}
-  m_Layer: 0
-  m_Name: HoleSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1993937647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1993937646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b9149c4fa8d19045baf13a85bad9f02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _holePrefab: {fileID: 2974168883872066690, guid: f2fce90cfd15d5349b5202c4e16b70c3, type: 3}
---- !u!4 &1993937648
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1993937646}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37.368427, y: 82.47832, z: 67.912}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
