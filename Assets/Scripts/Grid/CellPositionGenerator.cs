@@ -23,15 +23,12 @@ public class CellPositionGenerator
     {
         CalculateGridData();
         FillTheCellCentersArray();
+        Debug.Log("Grid correctly initialized");
     }
 
     private void CalculateGridData()
     {
-        if (_gridSquare.localScale.x == _gridSquare.localScale.z)
-            _gameFieldSideLength = _gridSquare.localScale.x;
-        else
-            throw new InvalidOperationException("The grid square must be square");
-
+        _gameFieldSideLength = _gridSquare.localScale.x;
         _cellSideSize = _gameFieldSideLength / _countOfCellsBySide;
 
         float halfOfCell = _cellSideSize / 2;
@@ -44,13 +41,9 @@ public class CellPositionGenerator
         _cellCenters = new Vector3[_countOfCellsBySide, _countOfCellsBySide];
         for (int x = 0; x < _countOfCellsBySide; x++)
             for (int z = 0; z < _countOfCellsBySide; z++)
-            {
-                _cellCenters[x, z] = new Vector3
+                    _cellCenters[x, z] = new Vector3
                     ((x + 1) * _cellSideSize,
                     _gridSquare.position.y,
                     (z + 1) * _cellSideSize) - _cellSpawnOffset;
-                Debug.Log(_cellCenters[x, z]);
-            }
-        Debug.Log("Grid correctly initialized");
     }
 }

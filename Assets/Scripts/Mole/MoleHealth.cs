@@ -15,6 +15,7 @@ public class MoleHealth
         _givenScores = givenScores;
         _currentHealth = _maxHealth;
     }
+    
     public void TakeDamage()
     {
         _currentHealth--;

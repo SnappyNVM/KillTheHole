@@ -17,6 +17,7 @@ public class MoleAttacker : MonoBehaviour
             return;
         target.TakeDamage();
     }
+
     private Mole GetMoleOnMousePosition()
     {
         var ray = _camera.ScreenPointToRay(Input.mousePosition);
