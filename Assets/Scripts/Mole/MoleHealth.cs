@@ -1,22 +1,18 @@
-using UnityEngine;
+using System;
 
-public class MoleHealth : MonoBehaviour
+public abstract class MoleHealth
 {
-    [SerializeField] private int _maxHealth;
-    [SerializeField] private int _givenScores;
+    private int _maxHealth;
+    private int _givenScores;
+    private int _currentHealth;
 
     public int GivenScores => _givenScores;
-
-    private int _currentHealth;
+    public event Action Death;
 
     public void TakeDamage()
     {
         _currentHealth--;
         if (_currentHealth <= 0)
-            Death();
-    }
-    private void Death()
-    {
-        Destroy(gameObject);
+            Death?.Invoke();
     }
 }

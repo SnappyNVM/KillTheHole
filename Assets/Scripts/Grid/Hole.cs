@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class Hole : MonoBehaviour
 {
-    private bool _isFree;
+    private Mole _spawnedMole;
+    public bool IsFree => _spawnedMole == null;
 
-    public bool IsFree => true;
-
-    public void SpawnMole(MoleHealth molePrefab)
+    public void SpawnMole(Mole molePrefab)
     {
-        Instantiate(molePrefab, transform.position, Quaternion.identity);
+        _spawnedMole = Instantiate(molePrefab, transform.position, Quaternion.identity);
     }
 }

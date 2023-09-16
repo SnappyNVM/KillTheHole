@@ -1,9 +1,11 @@
+using System.Collections;
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
 public class MoleSpawner : MonoBehaviour
 {
-    [SerializeField] private MoleHealth _molePrefab;
+    [SerializeField] private Mole _molePrefab;
     [SerializeField] private float _spawnCooldown;
 
     private HoleSpawner _spawner;
@@ -27,14 +29,18 @@ public class MoleSpawner : MonoBehaviour
 
     private void SpawnMole()
     {
-        if (_spawner.Holes.Length == 0)
+        var holes = GetFreeHoles();
+        if (holes.Length == 0)
             return;
-        var x = UnityEngine.Random.Range(0, _spawner.Holes.GetLength(0));
-        var y = UnityEngine.Random.Range(0, _spawner.Holes.GetLength(1));
-        var selectedHole = _spawner.Holes[x, y];
-        if (selectedHole.IsFree)
-            selectedHole.SpawnMole(_molePrefab);
-        else
-            SpawnMole();
+
+        var selectedHole = SelectRandomHole(holes);
+        selectedHole.SpawnMole(_molePrefab);
+    }
+    private Hole SelectRandomHole(Hole[] holes) => holes[Random.Range(0, holes.Length)];
+
+    private Hole[] GetFreeHoles()
+    {
+        var freeHoles = _spawner.Holes.ConvertToOneDimensional();
+        return freeHoles.Where(hole => hole.IsFree).ToArray();
     }
 }
