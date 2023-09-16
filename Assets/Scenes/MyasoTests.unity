@@ -443,8 +443,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4f23b55c40f334fa9b01e85b9c1d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _molePrefab: {fileID: 8732465232726608261, guid: 2fc681a35814b3b438fd2e05a4bb9c91, type: 3}
-  _spawnCooldown: 5
+  _molePrefab: {fileID: 2428529352704821798, guid: 2fc681a35814b3b438fd2e05a4bb9c91, type: 3}
+  _spawnCooldown: 1
 --- !u!4 &1542928555
 Transform:
   m_ObjectHideFlags: 0

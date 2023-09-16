@@ -29,11 +29,11 @@ public class MoleSpawner : MonoBehaviour
 
     private void SpawnMole()
     {
-        var holes = GetFreeHoles();
-        if (holes.Length == 0)
+        var freeHoles = GetFreeHoles();
+        if (freeHoles.Length == 0)
             return;
 
-        var selectedHole = SelectRandomHole(holes);
+        var selectedHole = SelectRandomHole(freeHoles);
         selectedHole.SpawnMole(_molePrefab);
     }
     private Hole SelectRandomHole(Hole[] holes) => holes[Random.Range(0, holes.Length)];
