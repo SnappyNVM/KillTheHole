@@ -16,4 +16,12 @@ public static class ArrayExtensions
             }
         return result;
     }
+
+    public static Tuple<int, int> FoundAnIndexByValue<T>(this T[,] source, T value)
+    {
+        for (int i = 0; i < source.GetLength(0); i++)
+            for (int j = 0; j < source.GetLength(1); j++)
+                if (source[i, j].Equals(value)) return new Tuple<int, int>(i, j);
+        return new Tuple<int, int>(0, 0);
+    }
 }

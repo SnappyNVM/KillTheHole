@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -445,6 +445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _molePrefab: {fileID: 2428529352704821798, guid: 2fc681a35814b3b438fd2e05a4bb9c91, type: 3}
   _spawnCooldown: 1
+  _spawner: {fileID: 1993937647}
 --- !u!4 &1542928555
 Transform:
   m_ObjectHideFlags: 0
@@ -490,6 +491,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a15484567b31144b43bfb0d16abdbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _countOfCellsBySide: 4
+  _gridSquare: {fileID: 1303599393}
+  _holeSpawner: {fileID: 1993937647}
+  _moleSpawner: {fileID: 1542928554}
 --- !u!114 &1610129863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,7 +509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 1963276134}
+  - {fileID: 1610129862}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -547,7 +552,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1963276132}
   - component: {fileID: 1963276133}
-  - component: {fileID: 1963276134}
   m_Layer: 0
   m_Name: Bootstrap
   m_TagString: Untagged
@@ -582,22 +586,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b76e22e7f70fb84e8e566df58c83830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _countOfCellsBySide: 4
-  _gridSquare: {fileID: 1303599393}
-  _holeSpawner: {fileID: 1993937647}
---- !u!114 &1963276134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1963276130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32df27b8ac6c1704ca36b84290a6ef31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spawner: {fileID: 1993937647}
 --- !u!1 &1993937646
 GameObject:
   m_ObjectHideFlags: 0

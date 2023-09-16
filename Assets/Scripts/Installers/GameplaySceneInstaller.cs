@@ -1,15 +1,18 @@
 using UnityEngine;
 using Zenject;
 
-public class GameplaySceneInstaller : MonoBehaviour
+public class GameplaySceneInstaller : MonoInstaller
 {
-    //[SerializeField] private int _countOfCellsBySide;
-    //[SerializeField] private Transform _gridSquare;
-    //private Grid _grid;
+    [SerializeField] private int _countOfCellsBySide;
+    [SerializeField] private Transform _gridSquare;
+    [SerializeField] private HoleSpawner _holeSpawner;
+    [SerializeField] private MoleSpawner _moleSpawner;
 
-    //public override void InstallBindings()
-    //{
-    //    _grid = new Grid(_gridSquare, _countOfCellsBySide);
-    //    Container.Bind<Grid>().FromInstance(_grid).AsSingle().NonLazy();
-    //}
+    private Grid _grid;
+
+    public override void InstallBindings()
+    {
+        _grid = new Grid(_gridSquare, _countOfCellsBySide, _holeSpawner, _moleSpawner);
+        Container.Bind<Grid>().FromInstance(_grid).AsSingle().Lazy();
+    }
 }

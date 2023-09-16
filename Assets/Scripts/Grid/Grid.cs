@@ -4,16 +4,20 @@ public class Grid
 {
     private readonly Transform _gridSquare;
     private readonly int _countOfCellsBySide;
-    private readonly CellPositionsGenerator _cellPositionsContainer;
-    private readonly FieldHolesFiller _fieldHolesFiller;
+    private readonly CellPositionGenerator _cellPositionContainer;
+    private readonly HoleSpawner _holeSpawner;
+    private readonly MoleSpawner _moleSpawner;
 
-    public CellPositionsGenerator CellPositionsContainer => _cellPositionsContainer;
+    public CellPositionGenerator CellPositionsContainer => _cellPositionContainer;
 
-    public Grid(Transform gridSquare, int countOfCellsBySide, HoleSpawner holeSpawner)
+    public Grid(Transform gridSquare, int countOfCellsBySide, HoleSpawner holeSpawner, MoleSpawner moleSpawner)
     {
         _gridSquare = gridSquare;
         _countOfCellsBySide = countOfCellsBySide;
-        _cellPositionsContainer = new CellPositionsGenerator(_countOfCellsBySide, _gridSquare);
-        _fieldHolesFiller = new FieldHolesFiller(this, holeSpawner);
+        _moleSpawner = moleSpawner;
+        _holeSpawner = holeSpawner;
+        _cellPositionContainer = new CellPositionGenerator(_countOfCellsBySide, _gridSquare);
+        _cellPositionContainer.GenerateCellPositions();
+        _holeSpawner.SpawnHoles(_cellPositionContainer.CellCenters);
     }
 }
