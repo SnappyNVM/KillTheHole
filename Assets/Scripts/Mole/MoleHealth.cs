@@ -1,13 +1,20 @@
 using System;
 
-public abstract class MoleHealth
+public class MoleHealth
 {
     private int _maxHealth;
-    private int _givenScores;
+    private int _scoreToGive;
     private int _currentHealth;
 
-    public int GivenScores => _givenScores;
+    public int ScoreToGive => _scoreToGive;
     public event Action Death;
+
+    public MoleHealth(int maxHealth)
+    {
+        _maxHealth = maxHealth;
+        _scoreToGive = maxHealth * 10;
+        _currentHealth = _maxHealth;
+    }
 
     public void TakeDamage()
     {

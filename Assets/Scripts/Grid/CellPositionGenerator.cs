@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class CellPositionsGenerator
+public class CellPositionGenerator
 {
     private readonly int _countOfCellsBySide;
     private readonly Transform _gridSquare;
@@ -13,10 +13,14 @@ public class CellPositionsGenerator
 
     public Vector3[,] CellCenters => _cellCenters;
 
-    public CellPositionsGenerator(int countOfCellsBySide, Transform gridSquare)
+    public CellPositionGenerator(int countOfCellsBySide, Transform gridSquare)
     {
         _countOfCellsBySide = countOfCellsBySide;
         _gridSquare = gridSquare;
+    }
+
+    public void GenerateCellPositions()
+    {
         CalculateGridData();
         FillTheCellCentersArray();
     }
