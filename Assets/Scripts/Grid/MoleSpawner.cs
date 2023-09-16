@@ -18,14 +18,16 @@ public class MoleSpawner : MonoBehaviour
     private ObjectTransformer _transformer;
     private float _currentSpawnCooldown;
     private bool[,] isCellsFree;
+    private ScoreHolder _scoreHolder;
 
     public bool[,] IsCellsFree { get { return isCellsFree; } set { isCellsFree = value; } }
 
     [Inject]
-    private void Construct(Grid grid, ObjectTransformer transformer)
+    private void Construct(Grid grid, ObjectTransformer transformer, ScoreHolder scoreHolder)
     {
         _grid = grid;
         _transformer = transformer;
+        _scoreHolder = scoreHolder;
     }
 
     private void Awake()
@@ -73,6 +75,7 @@ public class MoleSpawner : MonoBehaviour
         var coordinatesToSpawn = SelectRandomFreePosition(listOfFreeCells);
         var molePrefab = SelectRandomMole();
         var mole = Instantiate(molePrefab, coordinatesToSpawn, Quaternion.identity);
+        mole.Init(_scoreHolder);
         _transformer.RaiseAnObjectByCell(mole.transform);
         var valueIndexes = _grid.CellPositionsContainer.CellCenters.FoundAnIndexByValue(coordinatesToSpawn);
         isCellsFree[valueIndexes.Item1, valueIndexes.Item2] = false;
