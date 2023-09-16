@@ -3,19 +3,18 @@ using System;
 public class MoleHealth
 {
     private int _maxHealth;
-    private int _scoreToGive;
+    private int _givenScores;
     private int _currentHealth;
 
-    public int ScoreToGive => _scoreToGive;
+    public int GivenScores => _givenScores;
     public event Action Death;
 
-    public MoleHealth(int maxHealth)
+    public MoleHealth(int maxHealth, int givenScores)
     {
         _maxHealth = maxHealth;
-        _scoreToGive = maxHealth * 10;
+        _givenScores = givenScores;
         _currentHealth = _maxHealth;
     }
-
     public void TakeDamage()
     {
         _currentHealth--;
