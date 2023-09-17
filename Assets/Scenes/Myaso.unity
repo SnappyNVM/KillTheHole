@@ -1697,7 +1697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b9149c4fa8d19045baf13a85bad9f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _holePrefab: {fileID: 2974168883872066690, guid: f2fce90cfd15d5349b5202c4e16b70c3, type: 3}
+  _holePrefab: {fileID: 8500977782585373269, guid: 9b751f12f6e83ab41be596dd66e65239, type: 3}
 --- !u!114 &1542928558
 MonoBehaviour:
   m_ObjectHideFlags: 0
