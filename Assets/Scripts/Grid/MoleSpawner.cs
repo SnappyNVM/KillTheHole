@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -15,6 +14,7 @@ public class MoleSpawner : MonoBehaviour
     [SerializeField] private float _spawnCooldown;
 
     private ObjectTransformer _transformer;
+    private MoleParticlesSpawner _moleParticlesSpawner;
     private Grid _grid;
     private float _currentSpawnCooldown;
     private bool[,] _isCellsFree;
@@ -23,11 +23,12 @@ public class MoleSpawner : MonoBehaviour
     public bool[,] IsCellsFree { get { return _isCellsFree; } set { _isCellsFree = value; } }
    
     [Inject]
-    private void Construct(Grid grid, ObjectTransformer transformer, ScoreHolder scoreHolder)
+    private void Construct(Grid grid, ObjectTransformer transformer, ScoreHolder scoreHolder, MoleParticlesSpawner moleParticlesSpawner)
     {
         _grid = grid;
         _transformer  = transformer;
         _scoreHolder = scoreHolder;
+        _moleParticlesSpawner = moleParticlesSpawner;
     }
 
     public void Initialize()
@@ -81,7 +82,7 @@ public class MoleSpawner : MonoBehaviour
         var coordinatesToSpawn = SelectRandomFreePosition(listOfFreeCells);
         var molePrefab = SelectHalfRandomMole();
         var mole = Instantiate(molePrefab, coordinatesToSpawn, Quaternion.identity);
-        mole.Initialize(_scoreHolder, this);
+        mole.Initialize(_scoreHolder, this, _moleParticlesSpawner);
         _transformer.RaiseAnObjectByCell(mole.transform);
         var valueIndexes = _grid
             .CellPositionsContainer
@@ -104,8 +105,8 @@ public class MoleSpawner : MonoBehaviour
     private Mole SelectHalfRandomMole()
     {
         var chance = UnityEngine.Random.Range(0, 100);
-        if (chance <= 60) return _easyMole;
-        else if (chance <= 85) return _middleMole;
+        if (chance <= 50) return _easyMole;
+        else if (chance <= 80) return _middleMole;
         else return _hardMole;
     }
 

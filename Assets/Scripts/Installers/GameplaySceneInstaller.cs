@@ -9,6 +9,7 @@ public class GameplaySceneInstaller : MonoInstaller
     [SerializeField] private MoleSpawner _moleSpawner;
     [SerializeField] private ObjectTransformer _objectTransfromer;
     [SerializeField] private ScoreHolder _scoreHolder;
+    [SerializeField] private MoleParticlesSpawner _moleParticlesSpawner;
 
     private Grid _grid;
 
@@ -18,5 +19,6 @@ public class GameplaySceneInstaller : MonoInstaller
         Container.Bind<Grid>().FromInstance(_grid).AsSingle().Lazy();
         Container.Bind<ObjectTransformer>().FromInstance(_objectTransfromer).AsSingle().Lazy();
         Container.Bind<ScoreHolder>().FromInstance(_scoreHolder).AsSingle();
+        Container.Bind<MoleParticlesSpawner>().FromInstance(_moleParticlesSpawner).AsSingle().Lazy();
     }
 }

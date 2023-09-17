@@ -8,8 +8,5 @@ public class Bootstrap : MonoBehaviour
     [Inject]
     private void Construct(Grid grid) => _grid = grid;
 
-    private void Start()
-    {
-        _grid.Initalize();
-    }
+    private void Start() => _grid.Initalize();
 }
