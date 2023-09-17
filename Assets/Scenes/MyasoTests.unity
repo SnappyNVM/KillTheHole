@@ -760,8 +760,10 @@ GameObject:
   - component: {fileID: 1542928554}
   - component: {fileID: 1542928557}
   - component: {fileID: 1542928556}
-  - component: {fileID: 1542928558}
   - component: {fileID: 1542928559}
+  - component: {fileID: 1542928560}
+  - component: {fileID: 1542928558}
+  - component: {fileID: 1542928561}
   m_Layer: 0
   m_Name: ScriptHolder
   m_TagString: Untagged
@@ -784,7 +786,6 @@ MonoBehaviour:
   _easyMole: {fileID: 2428529352704821798, guid: 2fc681a35814b3b438fd2e05a4bb9c91, type: 3}
   _middleMole: {fileID: 2428529352704821798, guid: 3411590a04785444e94d356445c8dde4, type: 3}
   _hardMole: {fileID: 2428529352704821798, guid: 52814c3122c06c24ebe3d09fc85d5a4a, type: 3}
-  _spawnCooldown: 1
 --- !u!4 &1542928555
 Transform:
   m_ObjectHideFlags: 0
@@ -851,6 +852,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ae62d9b9f5c9946b72cf367c20024f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1542928560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542928553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff688d93887cc5e41a7bf30f8c38c6dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitParticles:
+  - {fileID: 2504214343621411456, guid: 3ed0d324122d7b24eaec75c55c74aafc, type: 3}
+  - {fileID: 5112403345868107899, guid: 6f34ef0d986e9db4199cf75805f79753, type: 3}
+  - {fileID: 8771972552311404798, guid: bbf9e36a48d6c5648a13889afab076fd, type: 3}
+  _hideParticles: {fileID: 9157105887693468085, guid: c4f829cb7dd4b864caf8832ec5b1ee55, type: 3}
+  _dieParicles: {fileID: 6855314210357232282, guid: 7c2a9b83b809a0848915fabd9596b68b, type: 3}
+--- !u!114 &1542928561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542928553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4641a53729d648e418f5b1630c4ca29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MinSpawnDelay>k__BackingField: 0.5
+  <StartSpawnDelay>k__BackingField: 3
+  <DelayDecrease>k__BackingField: 0.55
+  <DelayDecreaseDelay>k__BackingField: 1
 --- !u!1 &1610129861
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,12 +916,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a15484567b31144b43bfb0d16abdbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _countOfCellsBySide: 5
+  _countOfCellsBySide: 10
   _gridSquare: {fileID: 1303599393}
   _holeSpawner: {fileID: 1542928557}
   _moleSpawner: {fileID: 1542928554}
   _objectTransfromer: {fileID: 1542928556}
   _scoreHolder: {fileID: 1542928559}
+  _moleParticlesSpawner: {fileID: 1542928560}
+  _delayDecreaser: {fileID: 1542928561}
 --- !u!114 &1610129863
 MonoBehaviour:
   m_ObjectHideFlags: 0

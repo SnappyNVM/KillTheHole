@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -10,32 +12,37 @@ public class MoleSpawner : MonoBehaviour
     [SerializeField] private Mole _middleMole;
     [SerializeField] private Mole _hardMole;
 
-    [Header ("Moles Spawn Data")]
-    [SerializeField] private float _spawnCooldown;
-
+    [Header("Moles Spawn Data")]
     private ObjectTransformer _transformer;
     private MoleParticlesSpawner _moleParticlesSpawner;
     private Grid _grid;
     private float _currentSpawnCooldown;
     private bool[,] _isCellsFree;
     private ScoreHolder _scoreHolder;
+    private MoleSpawnDelayDecreaser _delayChanger;
 
-    public bool[,] IsCellsFree { get { return _isCellsFree; } set { _isCellsFree = value; } }
+    public bool[,] IsCellsFree { get => _isCellsFree; set { _isCellsFree = value; } }
    
     [Inject]
-    private void Construct(Grid grid, ObjectTransformer transformer, ScoreHolder scoreHolder, MoleParticlesSpawner moleParticlesSpawner)
+    private void Construct
+        (Grid grid,
+        ObjectTransformer transformer,
+        ScoreHolder scoreHolder,
+        MoleParticlesSpawner moleParticlesSpawner,
+        MoleSpawnDelayDecreaser moleSpawnerDelayDecreaser)
     {
         _grid = grid;
         _transformer  = transformer;
         _scoreHolder = scoreHolder;
         _moleParticlesSpawner = moleParticlesSpawner;
+        _delayChanger = moleSpawnerDelayDecreaser;
     }
 
     public void Initialize()
     {
         FillCellsStateTrue();
         RetransformMolePrefabs();
-        _currentSpawnCooldown = _spawnCooldown;
+        _currentSpawnCooldown = _delayChanger.StartSpawnDelay;
     }
 
     private void FixedUpdate() => UpdateCooldown();
@@ -56,7 +63,7 @@ public class MoleSpawner : MonoBehaviour
         if (_currentSpawnCooldown <= 0)
         {
             SpawnMole();
-            _currentSpawnCooldown = _spawnCooldown;
+            _currentSpawnCooldown = _delayChanger.CurrentDelay;
         }
     }
 
@@ -96,11 +103,13 @@ public class MoleSpawner : MonoBehaviour
         var listOfFreeCells = new List<Vector3>();
         for (int x = 0; x < _isCellsFree.GetLength(0); x++)
             for (int z = 0; z < _isCellsFree.GetLength(1); z++)
-                if (_isCellsFree[x, z]) listOfFreeCells.Add(_grid.CellPositionsContainer.CellCenters[x, z]);
+                if (_isCellsFree[x, z]) 
+                    listOfFreeCells.Add(_grid.CellPositionsContainer.CellCenters[x, z]);
         return listOfFreeCells;
     }
 
-    private Vector3 SelectRandomFreePosition(List<Vector3> listOfFreeCells) => listOfFreeCells[UnityEngine.Random.Range(0, listOfFreeCells.Count)];
+    private Vector3 SelectRandomFreePosition(List<Vector3> listOfFreeCells) =>
+        listOfFreeCells[UnityEngine.Random.Range(0, listOfFreeCells.Count)];
 
     private Mole SelectHalfRandomMole()
     {
