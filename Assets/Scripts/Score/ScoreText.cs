@@ -12,5 +12,6 @@ public class ScoreText : MonoBehaviour
     private void Constuct(ScoreHolder scoreHolder) => _holder = scoreHolder;
 
     private void Start() => _holder.ScoreIncreased += SetText;
+
     private void SetText(int scores) => _text.text = scores.ToString();
 }

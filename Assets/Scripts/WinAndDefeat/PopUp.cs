@@ -5,10 +5,10 @@ public class PopUp : MonoBehaviour
 {
     [SerializeField] private GameObject _popUp;
 
-    private TimeStoper _timeStoper;
+    private TimeChanger _timeStoper;
 
     [Inject]
-    private void Construct(TimeStoper timeStoper) => _timeStoper = timeStoper;
+    private void Construct(TimeChanger timeStoper) => _timeStoper = timeStoper;
 
     private void Start() => _popUp.SetActive(false);
 

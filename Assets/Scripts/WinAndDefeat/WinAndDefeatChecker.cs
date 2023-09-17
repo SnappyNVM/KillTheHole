@@ -39,6 +39,6 @@ public class WinAndDefeatChecker : MonoBehaviour
             _defeatPopUp.Open();
     }
 
-    public void SetTimeOutDefeat() => _defeatCondition = new TimeOutDefeatCondition(_timer);
-    public void SetPlayerDeathDefeat() => _defeatCondition = new PlayerDeathDefeatCondition(_playerHealth);
+    public void SetTimeOutCondition() => _defeatCondition = new TimeOutDefeatCondition(_timer);
+    public void SetPlayerDeathCondition() => _defeatCondition = new PlayerDeathDefeatCondition(_playerHealth);
 }

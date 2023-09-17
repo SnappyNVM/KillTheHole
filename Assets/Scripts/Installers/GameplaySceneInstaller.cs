@@ -13,7 +13,7 @@ public class GameplaySceneInstaller : MonoInstaller
     [SerializeField] private MoleSpawnDelayDecreaser _delayDecreaser;
     [SerializeField] private WinPopUp _winPopUp;
     [SerializeField] private DefeatPopUp _defeatPopUp;
-    [SerializeField] private TimeStoper _timeStoper;
+    [SerializeField] private TimeChanger _timeStoper;
     [SerializeField] private WinAndDefeatChecker _winAndDefeatChecker;
     [SerializeField] private DefeatTimer _defeatTimer;
 
@@ -31,7 +31,7 @@ public class GameplaySceneInstaller : MonoInstaller
         Container.Bind<WinPopUp>().FromInstance(_winPopUp).AsSingle();
         Container.Bind<DefeatPopUp>().FromInstance(_defeatPopUp).AsSingle();
         Container.Bind<WinAndDefeatChecker>().FromInstance(_winAndDefeatChecker).AsSingle();
-        Container.Bind<TimeStoper>().FromInstance(_timeStoper).AsSingle();
+        Container.Bind<TimeChanger>().FromInstance(_timeStoper).AsSingle();
         Container.Bind<DefeatTimer>().FromInstance(_defeatTimer).AsSingle();
     }
 }
