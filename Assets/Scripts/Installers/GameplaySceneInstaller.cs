@@ -9,6 +9,11 @@ public class GameplaySceneInstaller : MonoInstaller
     [SerializeField] private MoleSpawner _moleSpawner;
     [SerializeField] private ObjectTransformer _objectTransfromer;
     [SerializeField] private ScoreHolder _scoreHolder;
+    [SerializeField] private WinPopUp _winPopUp;
+    [SerializeField] private DefeatPopUp _defeatPopUp;
+    [SerializeField] private TimeStoper _timeStoper;
+    [SerializeField] private WinAndDefeatChecker _winAndDefeatChecker;
+    [SerializeField] private DefeatTimer _defeatTimer;
 
     private Grid _grid;
 
@@ -18,5 +23,10 @@ public class GameplaySceneInstaller : MonoInstaller
         Container.Bind<Grid>().FromInstance(_grid).AsSingle().Lazy();
         Container.Bind<ObjectTransformer>().FromInstance(_objectTransfromer).AsSingle().Lazy();
         Container.Bind<ScoreHolder>().FromInstance(_scoreHolder).AsSingle();
+        Container.Bind<WinPopUp>().FromInstance(_winPopUp).AsSingle();
+        Container.Bind<DefeatPopUp>().FromInstance(_defeatPopUp).AsSingle();
+        Container.Bind<WinAndDefeatChecker>().FromInstance(_winAndDefeatChecker).AsSingle();
+        Container.Bind<TimeStoper>().FromInstance(_timeStoper).AsSingle();
+        Container.Bind<DefeatTimer>().FromInstance(_defeatTimer).AsSingle();
     }
 }

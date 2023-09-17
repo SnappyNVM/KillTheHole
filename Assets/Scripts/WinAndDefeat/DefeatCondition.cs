@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public abstract class DefeatCondition : MonoBehaviour
+public abstract class DefeatCondition
 {
     public abstract bool CheackingDefeat();
 }

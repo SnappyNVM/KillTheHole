@@ -1,23 +1,8 @@
-using System;
-using UnityEngine;
-using Zenject;
-
-public class TimeOutDefeatCondition : DefeatCondition, IFixedTickable
+public class TimeOutDefeatCondition : DefeatCondition
 {
-    private float _timeToDefeat;
-    private float _currentTime;
+    private DefeatTimer _timer;
 
-    public TimeOutDefeatCondition(float timeToDefeat)
-    {
-        if (timeToDefeat < 0) throw new ArgumentException("Invalid time value", nameof(timeToDefeat));
-        _timeToDefeat = timeToDefeat;
-        _currentTime = _timeToDefeat;
-    }
+    public TimeOutDefeatCondition(DefeatTimer timer) => _timer = timer;
 
-    public void FixedTick()
-    {
-        _currentTime -= Time.fixedDeltaTime;
-    }
-
-    public override bool CheackingDefeat() => _currentTime <= 0;
+    public override bool CheackingDefeat() => _timer.TimeToDefeat <= 0;
 }

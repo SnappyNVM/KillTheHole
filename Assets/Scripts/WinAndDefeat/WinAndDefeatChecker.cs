@@ -4,22 +4,31 @@ using Zenject;
 public class WinAndDefeatChecker : MonoBehaviour
 {
     [SerializeField] private int _scoresToWin;
-    [SerializeField] private float _timeToDefeat;
+    [SerializeField, Min(0)] private float _timeToDefeat;
     [SerializeField] private int _playerHealth;
 
     private ScoreHolder _scoreHolder;
     private DefeatPopUp _defeatPopUp;
     private WinPopUp _winPopUp;
+    private DefeatTimer _timer;
 
     private DefeatCondition _defeatCondition;
     private WinCondition _winCondition;
 
     [Inject]
-    private void Construct(ScoreHolder scoreHolder, DefeatPopUp defeatPopUp, WinPopUp winPopUp)
+    private void Construct(ScoreHolder scoreHolder, DefeatPopUp defeatPopUp, WinPopUp winPopUp, DefeatTimer defeatTimer)
     {
         _scoreHolder = scoreHolder;
         _defeatPopUp = defeatPopUp;
         _winPopUp = winPopUp;
+        _timer = defeatTimer;
+    }
+
+    private void Start()
+    {
+        _winCondition = new ScoreWinCondition(_scoreHolder, _scoresToWin);
+        _defeatCondition = new NothingDefeatCondition();
+        _timer.Initialize(_timeToDefeat);
     }
 
     private void Update()
@@ -30,9 +39,6 @@ public class WinAndDefeatChecker : MonoBehaviour
             _defeatPopUp.Open();
     }
 
-    private void Start() => _winCondition = new ScoreWinCondition(_scoreHolder, _scoresToWin);
-
-    public void SetTimeOutDefeat() => _defeatCondition = new TimeOutDefeatCondition(_timeToDefeat);
-
+    public void SetTimeOutDefeat() => _defeatCondition = new TimeOutDefeatCondition(_timer);
     public void SetPlayerDeathDefeat() => _defeatCondition = new PlayerDeathDefeatCondition(_playerHealth);
 }

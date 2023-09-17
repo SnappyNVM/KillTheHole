@@ -1,13 +1,20 @@
 using UnityEngine;
+using Zenject;
 
 public class PopUp : MonoBehaviour
 {
-    private void Start()
-    {
-        gameObject.SetActive(false);
-    }
+    [SerializeField] private GameObject _popUp;
+
+    private TimeStoper _timeStoper;
+
+    [Inject]
+    private void Construct(TimeStoper timeStoper) => _timeStoper = timeStoper;
+
+    private void Start() => _popUp.SetActive(false);
+
     public void Open()
     {
-        gameObject.SetActive(true);
+        _popUp.SetActive(true);
+        _timeStoper.StopTime();
     }
 }
