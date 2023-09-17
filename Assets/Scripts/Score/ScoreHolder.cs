@@ -5,6 +5,8 @@ public class ScoreHolder : MonoBehaviour
 {
     private int _currentScores;
 
+    public int Scores => _currentScores;
+
     public event Action<int> ScoreIncreased;
     public void IncreaseScores(int scores)
     {
