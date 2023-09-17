@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 5
-  _givenScores: 0
+  _scoreMultiplier: 10
 --- !u!54 &-6472024409058252957
 Rigidbody:
   m_ObjectHideFlags: 0

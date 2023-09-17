@@ -441,6 +441,7 @@ GameObject:
   - component: {fileID: 1542928557}
   - component: {fileID: 1542928556}
   - component: {fileID: 1542928558}
+  - component: {fileID: 1542928559}
   m_Layer: 0
   m_Name: ScriptHolder
   m_TagString: Untagged
@@ -464,7 +465,6 @@ MonoBehaviour:
   _middleMole: {fileID: 2428529352704821798, guid: 3411590a04785444e94d356445c8dde4, type: 3}
   _hardMole: {fileID: 2428529352704821798, guid: 52814c3122c06c24ebe3d09fc85d5a4a, type: 3}
   _spawnCooldown: 0.05
-  _transformer: {fileID: 1542928556}
 --- !u!4 &1542928555
 Transform:
   m_ObjectHideFlags: 0
@@ -507,7 +507,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _holePrefab: {fileID: 8500977782585373269, guid: 9b751f12f6e83ab41be596dd66e65239, type: 3}
-  _transformer: {fileID: 1542928556}
 --- !u!114 &1542928558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,6 +517,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b76e22e7f70fb84e8e566df58c83830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1542928559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542928553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6ae62d9b9f5c9946b72cf367c20024f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1610129861
@@ -550,10 +561,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a15484567b31144b43bfb0d16abdbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _countOfCellsBySide: 20
+  _countOfCellsBySide: 5
   _gridSquare: {fileID: 1303599393}
   _holeSpawner: {fileID: 1542928557}
   _moleSpawner: {fileID: 1542928554}
+  _objectTransfromer: {fileID: 1542928556}
+  _scoreHolder: {fileID: 0}
 --- !u!114 &1610129863
 MonoBehaviour:
   m_ObjectHideFlags: 0

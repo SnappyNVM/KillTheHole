@@ -13,8 +13,8 @@ public class MoleSpawner : MonoBehaviour
 
     [Header ("Moles Spawn Data")]
     [SerializeField] private float _spawnCooldown;
-    [SerializeField] private ObjectTransformer _transformer;
 
+    private ObjectTransformer _transformer;
     private Grid _grid;
     private float _currentSpawnCooldown;
     private bool[,] isCellsFree;
@@ -23,9 +23,10 @@ public class MoleSpawner : MonoBehaviour
     public bool[,] IsCellsFree { get { return isCellsFree; } set { isCellsFree = value; } }
 
     [Inject]
-    private void Construct(Grid grid, ScoreHolder scoreHolder)
+    private void Construct(Grid grid, ObjectTransformer transformer, ScoreHolder scoreHolder)
     {
         _grid = grid;
+        _transformer  = transformer;
         _scoreHolder = scoreHolder;
     }
 

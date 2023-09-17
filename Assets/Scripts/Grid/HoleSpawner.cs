@@ -1,9 +1,13 @@
 using UnityEngine;
+using Zenject;
 
 public class HoleSpawner : MonoBehaviour
 {
     [SerializeField] private Hole _holePrefab;
-    [SerializeField] private ObjectTransformer _transformer;
+    private ObjectTransformer _transformer;
+
+    [Inject]
+    private void Construct(ObjectTransformer transformer) => _transformer = transformer; 
 
     public void SpawnHoles(Vector3[,] cellPositions)
     {

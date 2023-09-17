@@ -1,9 +1,9 @@
 using UnityEngine;
-using Zenject;
 
 public class Mole : MonoBehaviour
 {
     [SerializeField] private int _maxHealth;
+    [SerializeField] private int _scoreMultiplier;
     
     private int _givenScores;
     private MoleHealth _health;
@@ -14,7 +14,7 @@ public class Mole : MonoBehaviour
     private void Start()
     {
         _health = new MoleHealth(_maxHealth, _givenScores);
-        _givenScores = _maxHealth * 10;
+        _givenScores = _maxHealth * _scoreMultiplier;
         _health.Death += Death;
     }
 
