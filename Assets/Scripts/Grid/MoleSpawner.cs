@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -12,23 +13,21 @@ public class MoleSpawner : MonoBehaviour
 
     [Header ("Moles Spawn Data")]
     [SerializeField] private float _spawnCooldown;
-    [SerializeField] private HoleSpawner _spawner;
+    [SerializeField] private ObjectTransformer _transformer;
 
     private Grid _grid;
-    private ObjectTransformer _transformer;
     private float _currentSpawnCooldown;
     private bool[,] isCellsFree;
 
     public bool[,] IsCellsFree { get { return isCellsFree; } set { isCellsFree = value; } }
 
     [Inject]
-    private void Construct(Grid grid, ObjectTransformer transformer)
+    private void Construct(Grid grid)
     {
         _grid = grid;
-        _transformer = transformer;
     }
 
-    private void Awake()
+    public void Initialize()
     {
         FillCellsStateTrue();
         RetransformMolePrefabs();
@@ -87,14 +86,18 @@ public class MoleSpawner : MonoBehaviour
         return listOfFreeCells;
     }
 
-    private Vector3 SelectRandomFreePosition(List<Vector3> listOfFreeCells) => listOfFreeCells[Random.Range(0, listOfFreeCells.Count)];
+    private Vector3 SelectRandomFreePosition(List<Vector3> listOfFreeCells) => listOfFreeCells[UnityEngine.Random.Range(0, listOfFreeCells.Count)];
 
     private Mole SelectRandomMole()
     {
-        var chance = Random.Range(0, 100);
+        var chance = UnityEngine.Random.Range(0, 100);
         if (chance <= 60) return _easyMole;
         else if (chance <= 92) return _middleMole;
         else return _hardMole;
     }
 
+    public void MakeCellFree(Tuple<int, int> coordiantesToFree)
+    {
+        
+    }
 }
