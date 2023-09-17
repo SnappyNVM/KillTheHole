@@ -1,4 +1,4 @@
 public class PlayerDeathSelectButton : GameModeSelectButton
 {
-    protected override void SelectGameMode() => Checker.SetPlayerDeathDefeat();
+    protected override void SelectGameMode() => Checker.SetPlayerDeathCondition();
 }

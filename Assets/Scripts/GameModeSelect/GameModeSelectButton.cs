@@ -9,8 +9,8 @@ public abstract class GameModeSelectButton : MonoBehaviour
     private WinAndDefeatChecker _checker;
 
     protected WinAndDefeatChecker Checker => _checker;
-
     public Button Button => _button;
+
 
     [Inject]
     private void Construct(WinAndDefeatChecker checker) => _checker = checker;

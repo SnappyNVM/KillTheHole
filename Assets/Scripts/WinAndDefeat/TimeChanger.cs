@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TimeStoper : MonoBehaviour
+public class TimeChanger : MonoBehaviour
 {
     private void Start() => StopTime();
     public void StopTime() => Time.timeScale = 0;

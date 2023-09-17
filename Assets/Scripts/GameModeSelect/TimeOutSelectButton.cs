@@ -1,4 +1,4 @@
 public class TimeOutSelectButton : GameModeSelectButton
 {
-    protected override void SelectGameMode() => Checker.SetTimeOutDefeat();
+    protected override void SelectGameMode() => Checker.SetTimeOutCondition();
 }
