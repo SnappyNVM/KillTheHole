@@ -8,6 +8,7 @@ public class ScoreHolder : MonoBehaviour
     public int Scores => _currentScores;
 
     public event Action<int> ScoreIncreased;
+
     public void IncreaseScores(int scores)
     {
         if (scores < 0) throw new ArgumentException();

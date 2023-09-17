@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 1
+  _scoreMultiplier: 10
+  _lifeTime: 2
 --- !u!54 &-6472024409058252957
 Rigidbody:
   m_ObjectHideFlags: 0

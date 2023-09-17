@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using System.ComponentModel;
 
 public class Grid
 {
@@ -13,6 +12,8 @@ public class Grid
     public Transform GridSquare => _gridSquare;
     public int CountOfCellsBySide => _countOfCellsBySide;
     public CellPositionGenerator CellPositionsContainer => _cellPositionContainer;
+    public HoleSpawner HoleSpawner => _holeSpawner;
+    public MoleSpawner MoleSpawner => _moleSpawner;
 
     public Grid(Transform gridSquare, int countOfCellsBySide, HoleSpawner holeSpawner, MoleSpawner moleSpawner)
     {
@@ -23,7 +24,12 @@ public class Grid
         _moleSpawner = moleSpawner;
         _holeSpawner = holeSpawner;
         _cellPositionContainer = new CellPositionGenerator(_countOfCellsBySide, _gridSquare);
+    }
+
+    public void Initalize()
+    {
         _cellPositionContainer.GenerateCellPositions();
         _holeSpawner.SpawnHoles(_cellPositionContainer.CellCenters);
+        _moleSpawner.Initialize();
     }
 }

@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -10,31 +12,37 @@ public class MoleSpawner : MonoBehaviour
     [SerializeField] private Mole _middleMole;
     [SerializeField] private Mole _hardMole;
 
-    [Header ("Moles Spawn Data")]
-    [SerializeField] private float _spawnCooldown;
-    [SerializeField] private HoleSpawner _spawner;
-
-    private Grid _grid;
+    [Header("Moles Spawn Data")]
     private ObjectTransformer _transformer;
+    private MoleParticlesSpawner _moleParticlesSpawner;
+    private Grid _grid;
     private float _currentSpawnCooldown;
-    private bool[,] isCellsFree;
+    private bool[,] _isCellsFree;
     private ScoreHolder _scoreHolder;
+    private MoleSpawnDelayDecreaser _delayChanger;
 
-    public bool[,] IsCellsFree { get { return isCellsFree; } set { isCellsFree = value; } }
-
+    public bool[,] IsCellsFree { get => _isCellsFree; set { _isCellsFree = value; } }
+   
     [Inject]
-    private void Construct(Grid grid, ObjectTransformer transformer, ScoreHolder scoreHolder)
+    private void Construct
+        (Grid grid,
+        ObjectTransformer transformer,
+        ScoreHolder scoreHolder,
+        MoleParticlesSpawner moleParticlesSpawner,
+        MoleSpawnDelayDecreaser moleSpawnerDelayDecreaser)
     {
         _grid = grid;
-        _transformer = transformer;
+        _transformer  = transformer;
         _scoreHolder = scoreHolder;
+        _moleParticlesSpawner = moleParticlesSpawner;
+        _delayChanger = moleSpawnerDelayDecreaser;
     }
 
-    private void Awake()
+    public void Initialize()
     {
         FillCellsStateTrue();
         RetransformMolePrefabs();
-        _currentSpawnCooldown = _spawnCooldown;
+        _currentSpawnCooldown = _delayChanger.StartSpawnDelay;
     }
 
     private void FixedUpdate() => UpdateCooldown();
@@ -55,49 +63,68 @@ public class MoleSpawner : MonoBehaviour
         if (_currentSpawnCooldown <= 0)
         {
             SpawnMole();
-            _currentSpawnCooldown = _spawnCooldown;
+            _currentSpawnCooldown = _delayChanger.CurrentDelay;
         }
     }
 
     private void FillCellsStateTrue()
     {
-        isCellsFree = new bool[_grid.CellPositionsContainer.CellCenters.GetLength(0), _grid.CellPositionsContainer.CellCenters.GetLength(1)];
+        _isCellsFree = new bool[_grid.CellPositionsContainer.CellCenters.GetLength(0), _grid.CellPositionsContainer.CellCenters.GetLength(1)];
         for (int x = 0; x < _grid.CellPositionsContainer.CellCenters.GetLength(0); x++)
             for (int z = 0; z < _grid.CellPositionsContainer.CellCenters.GetLength(1); z++)
-                isCellsFree[x, z] = true;
+                _isCellsFree[x, z] = true;
     }
 
     private void SpawnMole()
     {
-        if (isCellsFree.ConvertToOneDimensional().Where(item => true).ToArray().Length == 0) return;
+        if (_isCellsFree
+            .ConvertToOneDimensional()
+            .Where(item => true)
+            .ToArray()
+            .Length == 0)
+            return;
         var listOfFreeCells = FindAFreeCells();
-        if (listOfFreeCells.Count == 0) return;
+        if (listOfFreeCells.Count == 0) 
+            return;
         var coordinatesToSpawn = SelectRandomFreePosition(listOfFreeCells);
-        var molePrefab = SelectRandomMole();
+        var molePrefab = SelectHalfRandomMole();
         var mole = Instantiate(molePrefab, coordinatesToSpawn, Quaternion.identity);
-        mole.Init(_scoreHolder);
+        mole.Initialize(_scoreHolder, this, _moleParticlesSpawner);
         _transformer.RaiseAnObjectByCell(mole.transform);
-        var valueIndexes = _grid.CellPositionsContainer.CellCenters.FoundAnIndexByValue(coordinatesToSpawn);
-        isCellsFree[valueIndexes.Item1, valueIndexes.Item2] = false;
+        var valueIndexes = _grid
+            .CellPositionsContainer
+            .CellCenters
+            .FoundAnIndexByCoordiates(coordinatesToSpawn);
+        _isCellsFree[valueIndexes.Item1, valueIndexes.Item2] = false;
     }
 
     private List<Vector3> FindAFreeCells()
     {
         var listOfFreeCells = new List<Vector3>();
-        for (int x = 0; x < isCellsFree.GetLength(0); x++)
-            for (int z = 0; z < isCellsFree.GetLength(1); z++)
-                if (isCellsFree[x, z]) listOfFreeCells.Add(_grid.CellPositionsContainer.CellCenters[x, z]);
+        for (int x = 0; x < _isCellsFree.GetLength(0); x++)
+            for (int z = 0; z < _isCellsFree.GetLength(1); z++)
+                if (_isCellsFree[x, z]) 
+                    listOfFreeCells.Add(_grid.CellPositionsContainer.CellCenters[x, z]);
         return listOfFreeCells;
     }
 
-    private Vector3 SelectRandomFreePosition(List<Vector3> listOfFreeCells) => listOfFreeCells[Random.Range(0, listOfFreeCells.Count)];
+    private Vector3 SelectRandomFreePosition(List<Vector3> listOfFreeCells) =>
+        listOfFreeCells[UnityEngine.Random.Range(0, listOfFreeCells.Count)];
 
-    private Mole SelectRandomMole()
+    private Mole SelectHalfRandomMole()
     {
-        var chance = Random.Range(0, 100);
-        if (chance <= 60) return _easyMole;
-        else if (chance <= 92) return _middleMole;
+        var chance = UnityEngine.Random.Range(0, 100);
+        if (chance <= 50) return _easyMole;
+        else if (chance <= 80) return _middleMole;
         else return _hardMole;
     }
 
+    public void ReleaseCell(Vector3 coordiantesToFree)
+    {
+        var indexesToFree = _grid
+            .CellPositionsContainer
+            .CellCenters
+            .FoundAnIndexByCoordiates(coordiantesToFree);
+        _isCellsFree[indexesToFree.Item1, indexesToFree.Item2] = true;
+    }
 }
