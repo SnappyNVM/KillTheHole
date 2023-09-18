@@ -2,9 +2,10 @@ public class PlayerDeathDefeatCondition : DefeatCondition
 {
     private PlayerHealth _playerHealth;
 
-    public PlayerDeathDefeatCondition(int health, MoleSpawner moleSpawner)
+    public PlayerDeathDefeatCondition(int health, PlayerHealth playerHealth ,MoleSpawner moleSpawner)
     {
-        _playerHealth = new PlayerHealth(health);
+        _playerHealth = playerHealth;
+        _playerHealth.Initialize(health);
         moleSpawner.CellReleased += _playerHealth.TakeDamage;
     }
 

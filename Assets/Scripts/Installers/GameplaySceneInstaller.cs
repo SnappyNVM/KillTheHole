@@ -16,6 +16,7 @@ public class GameplaySceneInstaller : MonoInstaller
     [SerializeField] private TimeChanger _timeStoper;
     [SerializeField] private WinAndDefeatChecker _winAndDefeatChecker;
     [SerializeField] private DefeatTimer _defeatTimer;
+    [SerializeField] private PlayerHealth _playerHealth;
 
     private Grid _grid;
 
@@ -33,5 +34,6 @@ public class GameplaySceneInstaller : MonoInstaller
         Container.Bind<WinAndDefeatChecker>().FromInstance(_winAndDefeatChecker).AsSingle();
         Container.Bind<TimeChanger>().FromInstance(_timeStoper).AsSingle();
         Container.Bind<DefeatTimer>().FromInstance(_defeatTimer).AsSingle();
+        Container.Bind<PlayerHealth>().FromInstance(_playerHealth).AsSingle();
     }
 }

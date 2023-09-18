@@ -9,6 +9,8 @@ public class HeartsBar : MonoBehaviour
     private List<Heart> _spawnedHearts;
     private PlayerHealth _playerHealth;
 
+
+
     private void Awake() => _spawnedHearts = new List<Heart>();
 
     private void SetHearts()
