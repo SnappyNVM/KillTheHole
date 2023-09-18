@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class HeartsBar : MonoBehaviour
+public class HeartsBar : GameModeUIElement<PlayerDeathDefeatCondition>
 {
     [SerializeField] private Heart _heartPrefab;
     [SerializeField] private Vector3 _heartsOffset;

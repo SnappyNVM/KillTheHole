@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -16,6 +17,8 @@ public class WinAndDefeatChecker : MonoBehaviour
 
     private DefeatCondition _defeatCondition;
     private WinCondition _winCondition;
+
+    public Action<DefeatCondition> GameModeSelected;
 
     [Inject]
     private void Construct(ScoreHolder scoreHolder, DefeatPopUp defeatPopUp, WinPopUp winPopUp, DefeatTimer defeatTimer, MoleSpawner moleSpawner, PlayerHealth playerHealth)
@@ -43,6 +46,14 @@ public class WinAndDefeatChecker : MonoBehaviour
             _defeatPopUp.Open();
     }
 
-    public void SetTimeOutCondition() => _defeatCondition = new TimeOutDefeatCondition(_timer);
-    public void SetPlayerDeathCondition() => _defeatCondition = new PlayerDeathDefeatCondition(_hearth, _playerHealth, _moleSpawner);
+    public void SetTimeOutCondition()
+    {
+        _defeatCondition = new TimeOutDefeatCondition(_timer);
+        GameModeSelected?.Invoke(_defeatCondition);
+    }
+    public void SetPlayerDeathCondition()
+    {
+        _defeatCondition = new PlayerDeathDefeatCondition(_hearth, _playerHealth, _moleSpawner);
+        GameModeSelected?.Invoke(_defeatCondition);
+    }
 }

@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using Zenject;
 
-public class DefeatTimerText : MonoBehaviour
+public class DefeatTimerText : GameModeUIElement<TimeOutDefeatCondition>
 {
     [SerializeField] private TMP_Text _text;
 
