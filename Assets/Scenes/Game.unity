@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _heartPrefab: {fileID: 8396489884734645160, guid: f171550b5ac204345b68fbe52a684ca3, type: 3}
-  _heartsOffset: {x: 70, y: 0, z: 0}
+  _heartsOffset: {x: 40, y: 0, z: 0}
 --- !u!1 &366081565
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,8 +278,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -227.81653, y: -93.170654}
-  m_SizeDelta: {x: 400, y: 100}
+  m_AnchoredPosition: {x: -282, y: -93.170654}
+  m_SizeDelta: {x: 512, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &473868767
 MonoBehaviour:
@@ -1573,14 +1573,14 @@ GameObject:
   - component: {fileID: 1542928554}
   - component: {fileID: 1542928557}
   - component: {fileID: 1542928556}
-  - component: {fileID: 1542928559}
   - component: {fileID: 1542928560}
-  - component: {fileID: 1542928558}
   - component: {fileID: 1542928561}
   - component: {fileID: 1542928564}
+  - component: {fileID: 1542928559}
   - component: {fileID: 1542928562}
   - component: {fileID: 1542928565}
   - component: {fileID: 1542928566}
+  - component: {fileID: 1542928558}
   m_Layer: 0
   m_Name: ScriptHolder
   m_TagString: Untagged
@@ -1699,10 +1699,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4641a53729d648e418f5b1630c4ca29a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MinSpawnDelay>k__BackingField: 1
+  <MinSpawnDelay>k__BackingField: 0.625
   <StartSpawnDelay>k__BackingField: 3
-  <DelayDecrease>k__BackingField: 0.05
-  <DelayDecreaseDelay>k__BackingField: 1
+  <DelayDecrease>k__BackingField: 0.1
+  <DelayDecreaseDelay>k__BackingField: 0.5
 --- !u!114 &1542928562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1727,8 +1727,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25755499ac2a56c4dbb240cab27d1240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scoresToWin: 100
-  _timeToDefeat: 1000
+  _scoresToWin: 2000
+  _timeToDefeat: 100
   _hearth: 5
 --- !u!114 &1542928565
 MonoBehaviour:
@@ -1960,8 +1960,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 227.81653, y: -93.170685}
-  m_SizeDelta: {x: 400, y: 100}
+  m_AnchoredPosition: {x: 282, y: -93.170715}
+  m_SizeDelta: {x: 512, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1586285509
 MonoBehaviour:
@@ -2356,7 +2356,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 963194227}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1

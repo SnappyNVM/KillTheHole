@@ -12,7 +12,11 @@ public class ScoreText : MonoBehaviour
     [Inject]
     private void Constuct(ScoreHolder scoreHolder) => _holder = scoreHolder;
 
-    private void Start() => _holder.ScoreIncreased += SetText;
+    private void Start()
+    {
+        _holder.ScoreIncreased += SetText;
+        SetText(0);
+    }
 
     private void SetText(int scores) => _text.text = _prefix + scores.ToString();
 }
