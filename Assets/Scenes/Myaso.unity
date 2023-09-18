@@ -1633,7 +1633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scoresToWin: 100
   _timeToDefeat: 5
-  _hearth: 0
+  _hearth: 5
 --- !u!114 &1542928565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2126,7 +2126,7 @@ MonoBehaviour:
   _timeStoper: {fileID: 1542928565}
   _winAndDefeatChecker: {fileID: 1542928564}
   _defeatTimer: {fileID: 1542928562}
-  _playerHealth: {fileID: 0}
+  _playerHealth: {fileID: 1542928566}
 --- !u!114 &1610129863
 MonoBehaviour:
   m_ObjectHideFlags: 0
