@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -20,6 +21,7 @@ public class MoleSpawner : MonoBehaviour
     private MoleSpawnDelayDecreaser _delayChanger;
 
     public bool[,] IsCellsFree { get => _isCellsFree; set { _isCellsFree = value; } }
+    public event Action CellReleased;
    
     [Inject]
     private void Construct
@@ -124,5 +126,6 @@ public class MoleSpawner : MonoBehaviour
             .CellCenters
             .FoundAnIndexByCoordiates(coordiantesToFree);
         _isCellsFree[indexesToFree.Item1, indexesToFree.Item2] = true;
+        CellReleased?.Invoke();
     }
 }

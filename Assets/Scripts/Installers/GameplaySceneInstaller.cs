@@ -16,8 +16,6 @@ public class GameplaySceneInstaller : MonoInstaller
     [SerializeField] private TimeChanger _timeStoper;
     [SerializeField] private WinAndDefeatChecker _winAndDefeatChecker;
     [SerializeField] private DefeatTimer _defeatTimer;
-    [SerializeField] private MoleParticlesSpawner _moleParticlesSpawner;
-    [SerializeField] private MoleSpawnDelayDecreaser _delayDecreaser;
 
     private Grid _grid;
 
@@ -35,7 +33,5 @@ public class GameplaySceneInstaller : MonoInstaller
         Container.Bind<WinAndDefeatChecker>().FromInstance(_winAndDefeatChecker).AsSingle();
         Container.Bind<TimeChanger>().FromInstance(_timeStoper).AsSingle();
         Container.Bind<DefeatTimer>().FromInstance(_defeatTimer).AsSingle();
-        Container.Bind<MoleParticlesSpawner>().FromInstance(_moleParticlesSpawner).AsSingle().Lazy();
-        Container.Bind<MoleSpawnDelayDecreaser>().FromInstance(_delayDecreaser).AsSingle().Lazy();
     }
 }

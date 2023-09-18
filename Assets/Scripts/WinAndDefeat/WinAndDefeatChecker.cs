@@ -11,17 +11,19 @@ public class WinAndDefeatChecker : MonoBehaviour
     private DefeatPopUp _defeatPopUp;
     private WinPopUp _winPopUp;
     private DefeatTimer _timer;
+    private MoleSpawner _moleSpawner;
 
     private DefeatCondition _defeatCondition;
     private WinCondition _winCondition;
 
     [Inject]
-    private void Construct(ScoreHolder scoreHolder, DefeatPopUp defeatPopUp, WinPopUp winPopUp, DefeatTimer defeatTimer)
+    private void Construct(ScoreHolder scoreHolder, DefeatPopUp defeatPopUp, WinPopUp winPopUp, DefeatTimer defeatTimer, MoleSpawner moleSpawner)
     {
         _scoreHolder = scoreHolder;
         _defeatPopUp = defeatPopUp;
         _winPopUp = winPopUp;
         _timer = defeatTimer;
+        _moleSpawner = moleSpawner;
     }
 
     private void Start()
@@ -40,5 +42,5 @@ public class WinAndDefeatChecker : MonoBehaviour
     }
 
     public void SetTimeOutCondition() => _defeatCondition = new TimeOutDefeatCondition(_timer);
-    public void SetPlayerDeathCondition() => _defeatCondition = new PlayerDeathDefeatCondition(_playerHealth);
+    public void SetPlayerDeathCondition() => _defeatCondition = new PlayerDeathDefeatCondition(_playerHealth, _moleSpawner);
 }
