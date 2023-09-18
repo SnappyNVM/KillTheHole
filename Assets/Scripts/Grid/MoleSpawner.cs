@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -22,6 +21,7 @@ public class MoleSpawner : MonoBehaviour
     private MoleSpawnDelayDecreaser _delayChanger;
 
     public bool[,] IsCellsFree { get => _isCellsFree; set { _isCellsFree = value; } }
+    public event Action MoleRunAway;
    
     [Inject]
     private void Construct
@@ -119,6 +119,7 @@ public class MoleSpawner : MonoBehaviour
         else return _hardMole;
     }
 
+    public void OnMoleRunAway() => MoleRunAway?.Invoke();
     public void ReleaseCell(Vector3 coordiantesToFree)
     {
         var indexesToFree = _grid

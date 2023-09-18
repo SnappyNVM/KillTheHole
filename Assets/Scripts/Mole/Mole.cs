@@ -39,13 +39,14 @@ public class Mole : MonoBehaviour
 
     private void HideAMole()
     {
-        Destroy(gameObject);
         _moleSpawner.ReleaseCell(transform.position);
+        Destroy(gameObject);
     }
 
     private void RunAwayMole()
     {
-        HideAMole();
        _particlesSpawner.SpawnHideParticles(transform.position);
+        HideAMole();
+        _moleSpawner.OnMoleRunAway();
     }
 }
