@@ -5,6 +5,7 @@ using Zenject;
 public class ScoreText : MonoBehaviour
 {
     [SerializeField] private TMP_Text _text;
+    [SerializeField] private string _prefix;
 
     private ScoreHolder _holder;
 
@@ -13,5 +14,5 @@ public class ScoreText : MonoBehaviour
 
     private void Start() => _holder.ScoreIncreased += SetText;
 
-    private void SetText(int scores) => _text.text = scores.ToString();
+    private void SetText(int scores) => _text.text = _prefix + scores.ToString();
 }

@@ -294,6 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 473868768}
+  _prefix: 'Score: '
 --- !u!114 &473868768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1698,9 +1699,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4641a53729d648e418f5b1630c4ca29a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MinSpawnDelay>k__BackingField: 0.5
+  <MinSpawnDelay>k__BackingField: 1
   <StartSpawnDelay>k__BackingField: 3
-  <DelayDecrease>k__BackingField: 0.55
+  <DelayDecrease>k__BackingField: 0.05
   <DelayDecreaseDelay>k__BackingField: 1
 --- !u!114 &1542928562
 MonoBehaviour:
@@ -1727,7 +1728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoresToWin: 100
-  _timeToDefeat: 5
+  _timeToDefeat: 1000
   _hearth: 5
 --- !u!114 &1542928565
 MonoBehaviour:
@@ -1975,6 +1976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 1586285510}
+  _prefix: 'Time: '
 --- !u!114 &1586285510
 MonoBehaviour:
   m_ObjectHideFlags: 0
