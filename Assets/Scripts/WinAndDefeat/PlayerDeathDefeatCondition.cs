@@ -6,7 +6,7 @@ public class PlayerDeathDefeatCondition : DefeatCondition
     {
         _playerHealth = playerHealth;
         _playerHealth.Initialize(health);
-        moleSpawner.CellReleased += _playerHealth.TakeDamage;
+        moleSpawner.MoleRunAway += _playerHealth.TakeDamage;
     }
 
     public override bool CheackingDefeat() => _playerHealth.Health <= 0;

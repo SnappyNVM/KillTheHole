@@ -47,5 +47,6 @@ public class Mole : MonoBehaviour
     {
        _particlesSpawner.SpawnHideParticles(transform.position);
         HideAMole();
+        _moleSpawner.OnMoleRunAway();
     }
 }

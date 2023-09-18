@@ -21,7 +21,7 @@ public class MoleSpawner : MonoBehaviour
     private MoleSpawnDelayDecreaser _delayChanger;
 
     public bool[,] IsCellsFree { get => _isCellsFree; set { _isCellsFree = value; } }
-    public event Action CellReleased;
+    public event Action MoleRunAway;
    
     [Inject]
     private void Construct
@@ -119,6 +119,7 @@ public class MoleSpawner : MonoBehaviour
         else return _hardMole;
     }
 
+    public void OnMoleRunAway() => MoleRunAway?.Invoke();
     public void ReleaseCell(Vector3 coordiantesToFree)
     {
         var indexesToFree = _grid
@@ -126,6 +127,5 @@ public class MoleSpawner : MonoBehaviour
             .CellCenters
             .FoundAnIndexByCoordiates(coordiantesToFree);
         _isCellsFree[indexesToFree.Item1, indexesToFree.Item2] = true;
-        CellReleased?.Invoke();
     }
 }

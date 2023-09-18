@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1431,8 +1431,9 @@ GameObject:
   - component: {fileID: 1542928558}
   - component: {fileID: 1542928561}
   - component: {fileID: 1542928564}
-  - component: {fileID: 1542928563}
   - component: {fileID: 1542928562}
+  - component: {fileID: 1542928566}
+  - component: {fileID: 1542928565}
   m_Layer: 0
   m_Name: ScriptHolder
   m_TagString: Untagged
@@ -1567,18 +1568,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f0a40f82377ff24daa81aac783df3f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1542928563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1542928553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43fa8baeff34f094d80cf17b9d9a724b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1542928564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1593,7 +1582,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scoresToWin: 100
   _timeToDefeat: 1000
-  _playerHealth: 5
+  _hearth: 0
+--- !u!114 &1542928565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542928553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5650c0beb2be4284d9dede4ef4a44ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1542928566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542928553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430ace83b1699424198a94ed65f83cdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1552687395
 GameObject:
   m_ObjectHideFlags: 0
@@ -2059,9 +2072,10 @@ MonoBehaviour:
   _delayDecreaser: {fileID: 1542928561}
   _winPopUp: {fileID: 1114684042}
   _defeatPopUp: {fileID: 632600252}
-  _timeStoper: {fileID: 1542928563}
+  _timeStoper: {fileID: 1542928566}
   _winAndDefeatChecker: {fileID: 1542928564}
   _defeatTimer: {fileID: 1542928562}
+  _playerHealth: {fileID: 1542928565}
 --- !u!114 &1610129863
 MonoBehaviour:
   m_ObjectHideFlags: 0
